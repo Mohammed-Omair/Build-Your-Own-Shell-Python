@@ -9,6 +9,8 @@ def main():
 
         # Wait for user input
         user = input()
+        if user == "exit 0":
+            break
         print('{}: command not found'.format(user))
 
 
