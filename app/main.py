@@ -9,10 +9,25 @@ def main():
 
         # Wait for user input
         user = input()
-        if user == "exit 0":
-            break
-        print('{}: command not found'.format(user))
 
+        # List of commands
+        commands = {"exit": exit, "echo": echo}
+
+        # splitting the whole command into the main commands and its flags
+        split_command = user.split()
+
+        if split_command[0] in commands and len(split_command) > 1:
+            commands.get(split_command[0])(split_command[1])
+        elif split_command[0] in commands and len(split_command) == 1:
+            commands.get(split_command[0])()
+        else:
+            print('{}: command not found'.format(user))
+
+def echo(word):
+    print(word)
+
+def exit(number):
+    sys.exit(number)
 
 if __name__ == "__main__":
     main()
