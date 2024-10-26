@@ -29,7 +29,7 @@ def echo(word):
 
 def exit(number):
     number = ' '.join(number)
-    sys.exit(number)
+    sys.exit()
 
 if __name__ == "__main__":
     main()
