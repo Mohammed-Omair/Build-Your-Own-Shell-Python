@@ -3,7 +3,6 @@ import os
 
 path = os.environ.get('PATH')
 path = path.split(":")
-print(path)
 def notFound(cmd):
     print('{}: command not found'.format(cmd))
 
