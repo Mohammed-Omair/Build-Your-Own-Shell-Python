@@ -26,7 +26,10 @@ def pwd():
 
 def cd(dir):
     dir = ' '.join(dir)
-    if os.path.exists(dir):
+    home = os.environ.get('HOME')
+    if dir == "~":
+        os.chdir(home)
+    elif os.path.exists(dir):
         os.chdir(dir)
     else:
         print("cd: {}: No such file or directory".format(dir))
