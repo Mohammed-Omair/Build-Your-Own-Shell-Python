@@ -1,6 +1,24 @@
 import sys
 
+def notFound(cmd):
+    print('{}: command not found'.format(cmd))
 
+def echo(word):
+    word = ' '.join(word)
+    print(word)
+
+def exit(number):
+    number = ' '.join(number)
+    sys.exit()
+
+def type(cmd):
+    cmd = ' '.join(cmd)
+    if cmd in commands:
+       print('{} is a shell builtin'.format(cmd))
+    else:
+        print('{}: not found'.format(cmd))
+
+commands = {"exit": exit, "echo": echo, "type": type}
 def main():
     while (True):
         # Uncomment this block to pass the first stage
@@ -11,7 +29,7 @@ def main():
         user = input()
 
         # List of commands
-        commands = {"exit": exit, "echo": echo}
+        
 
         # splitting the whole command into the main commands and its flags
         split_command = user.split()
@@ -21,15 +39,10 @@ def main():
         elif split_command[0] in commands and len(split_command) == 1:
             commands.get(split_command[0])()
         else:
-            print('{}: command not found'.format(user))
+            #print('{}: command not found'.format(user))
+            notFound(split_command[0])
 
-def echo(word):
-    word = ' '.join(word)
-    print(word)
 
-def exit(number):
-    number = ' '.join(number)
-    sys.exit()
 
 if __name__ == "__main__":
     main()
