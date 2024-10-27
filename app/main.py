@@ -1,5 +1,9 @@
 import sys
+import os
 
+path = os.environ.get('PATH')
+path = path.split(":")
+print(path)
 def notFound(cmd):
     print('{}: command not found'.format(cmd))
 
@@ -16,7 +20,14 @@ def type(cmd):
     if cmd in commands:
        print('{} is a shell builtin'.format(cmd))
     else:
-        print('{}: not found'.format(cmd))
+        found = False
+        for filePath in path:
+            if os.path.exists(filePath + cmd):
+                print('{} is {}'.format(cmd, filePath + cmd))
+                found = True
+                break
+        if not found:
+            print('{}: not found'.format(cmd))
 
 commands = {"exit": exit, "echo": echo, "type": type}
 def main():
