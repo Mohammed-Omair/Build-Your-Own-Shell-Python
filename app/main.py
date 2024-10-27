@@ -21,6 +21,9 @@ def exit(number):
     number = ' '.join(number)
     sys.exit()
 
+def pwd():
+    print(os.getcwd())
+
 def type(cmd):
     cmd = ' '.join(cmd)
     if cmd in commands:
@@ -31,10 +34,10 @@ def type(cmd):
     else:
         print('{}: not found'.format(cmd))
 
-commands = {"exit": exit, "echo": echo, "type": type}
+commands = {"exit": exit, "echo": echo, "type": type, "pwd": pwd}
 def main():
     while (True):
-        # Uncomment this block to pass the first stage
+        
         sys.stdout.write("$ ")
         sys.stdout.flush()
 
