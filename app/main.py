@@ -21,6 +21,7 @@ def type(cmd):
     else:
         found = False
         for filePath in path:
+            print(filePath+"/"+cmd)
             if os.path.exists(filePath + cmd):
                 print('{} is {}'.format(cmd, filePath + cmd))
                 found = True
