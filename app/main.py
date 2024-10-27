@@ -1,8 +1,15 @@
 import sys
 import os
+import subprocess
 
 path = os.environ.get('PATH')
 path = path.split(":")
+
+def pathExists(cmd):
+    for filePath in path:
+            if os.path.exists(filePath+"/"+cmd):
+                return filePath+"/"+cmd
+
 def notFound(cmd):
     print('{}: command not found'.format(cmd))
 
@@ -18,15 +25,11 @@ def type(cmd):
     cmd = ' '.join(cmd)
     if cmd in commands:
        print('{} is a shell builtin'.format(cmd))
+
+    elif exists:=pathExists(cmd):
+        print('{} is {}'.format(cmd, exists))
     else:
-        found = False
-        for filePath in path:
-            if os.path.exists(filePath+"/"+cmd):
-                print('{} is {}'.format(cmd, filePath + "/" + cmd))
-                found = True
-                break
-        if not found:
-            print('{}: not found'.format(cmd))
+        print('{}: not found'.format(cmd))
 
 commands = {"exit": exit, "echo": echo, "type": type}
 def main():
@@ -48,6 +51,9 @@ def main():
             commands.get(split_command[0])(split_command[1:])
         elif split_command[0] in commands and len(split_command) == 1:
             commands.get(split_command[0])()
+        elif exists:=pathExists(split_command[0]):
+            args = ' '.join(split_command[1:])
+            subprocess.run([exists, args])
         else:
             #print('{}: command not found'.format(user))
             notFound(split_command[0])
