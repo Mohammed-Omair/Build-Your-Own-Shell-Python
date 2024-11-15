@@ -45,7 +45,7 @@ The shell will start and display a prompt (`$`). You can now enter commands.
 
 ## Usage
 ### Built-in Commands
-1. Print Working Directory (`pwd`)
+#### 1. Print Working Directory (`pwd`)
 ```bash
 $ pwd
 ```
@@ -54,7 +54,7 @@ Example Output:
 /home/user/Build-Your-Own-Shell-Python/app
 ```
 
-2. Change Directory (`cd`)
+#### 2. Change Directory (`cd`)
 ```bash
 $ cd <directory>
 
@@ -65,12 +65,12 @@ $ cd /tmp/
 
 ```
 
-3. Echo a Message (`echo`)
+#### 3. Echo a Message (`echo`)
 ```bash
 $ echo Hello, World!
 ```
 
-4. Check Command Type (`type`)
+#### 4. Check Command Type (`type`)
 ```bash
 $ type echo
 ```
@@ -79,7 +79,7 @@ Example Output:
 echo is a shell builtin
 ```
 
-5. Exit the shell (`exit`)
+#### 5. Exit the shell (`exit`)
 ```bash
 $ exit
 ```
