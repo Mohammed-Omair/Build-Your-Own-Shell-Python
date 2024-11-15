@@ -1,34 +1,123 @@
-[![progress-banner](https://backend.codecrafters.io/progress/shell/dd74e0db-a8aa-40ea-85d6-178e1c27d994)](https://app.codecrafters.io/users/codecrafters-bot?r=2qF)
+# Build Your Own Shell
 
-This is a starting point for Python solutions to the
-["Build Your Own Shell" Challenge](https://app.codecrafters.io/courses/shell/overview).
+A custom-built shell implemented in Python, supporting built-in commands like `cd`, `pwd`, and `echo`, as well as execution of external commands. The shell dynamically resolves executable paths, handles errors gracefully, and provides an intuitive user experience for basic shell functionalities.
 
-In this challenge, you'll build your own POSIX compliant shell that's capable of
-interpreting shell commands, running external programs and builtin commands like
-cd, pwd, echo and more. Along the way, you'll learn about shell command parsing,
-REPLs, builtin commands, and more.
+## Features
 
-**Note**: If you're viewing this repo on GitHub, head over to
-[codecrafters.io](https://codecrafters.io) to try the challenge.
+- **Built-in Commands**:
+  - `cd <directory>`: Change the current working directory.
+  - `pwd`: Display the current working directory.
+  - `echo <message>`: Print the specified message to the console.
+  - `type <command>`: Determine if the command is a built-in shell command or an external executable.
+  - `exit`: Exit the shell.
+- **External Command Execution**:
+  - Executes any external commands available in the system’s `PATH`.
+  - Dynamically resolves paths for executables.
+- **Error Handling**:
+  - Handles missing files or directories for commands like `cd`.
+  - Displays appropriate error messages for unknown commands.
+- **Environment Variable Parsing**:
+  - Supports usage of user-defined environment variables like `~` for the home directory.
+- **Path Searching**:
+  - Searches through directories listed in the `PATH` environment variable to locate executables.
 
-# Passing the first stage
+## Requirements
 
-The entry point for your `shell` implementation is in `app/main.py`. Study and
-uncomment the relevant code, and push your changes to pass the first stage:
+- Python 3.6+
+- A Unix-like environment (Linux/Mac) or Windows with minimal adjustments.
 
-```sh
-git commit -am "pass 1st stage" # any msg
-git push origin master
+## Getting Started
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/Mohammed-Omair/Build-Your-Own-Shell-Python.git
+cd Build-Your-Own-Shell-Python/app/
 ```
 
-Time to move on to the next stage!
+### Run the Shell
+Start the shell by running:
+```bash
+python3 main.py
 
-# Stage 2 & beyond
+```
+The shell will start and display a prompt (`$`). You can now enter commands.
 
-Note: This section is for stages 2 and beyond.
+## Usage
+### Built-in Commands
+1. Print Working Directory (`pwd`)
+```bash
+$ pwd
+```
+Example Output:
+```bash
+/home/user/Build-Your-Own-Shell-Python/app
+```
 
-1. Ensure you have `python (3.11)` installed locally
-1. Run `./your_program.sh` to run your program, which is implemented in
-   `app/main.py`.
-1. Commit your changes and run `git push origin master` to submit your solution
-   to CodeCrafters. Test output will be streamed to your terminal.
+2. Change Directory (`cd`)
+```bash
+$ cd <directory>
+
+```
+Example:
+```bash
+$ cd /tmp/
+
+```
+
+3. Echo a Message (`echo`)
+```bash
+$ echo Hello, World!
+```
+
+4. Check Command Type (`type`)
+```bash
+$ type echo
+```
+Example Output:
+```bash
+echo is a shell builtin
+```
+
+5. Exit the shell (`exit`)
+```bash
+$ exit
+```
+
+### External Commands
+Run any external command available in the system’s `PATH`. For example:
+```bash
+$ ls -l
+$ python3 --version
+```
+
+### Error Handling
+- Unknown commands will display an error:
+```bash
+command: not found
+```
+
+- If the target directory for `cd` does not exist:
+```bash
+cd: <directory>: No such file or directory
+```
+## How It Works
+
+1. **Command Parsing**:
+   - Splits the input into a command and its arguments.
+
+2. **Built-in Command Handling**:
+   - Matches the command against built-in commands and executes them directly.
+
+3. **Path Resolution**:
+   - For external commands, iterates through directories in `PATH` to locate the executable.
+
+4. **Error Handling**:
+   - Catches errors like invalid commands or inaccessible directories.
+
+5. **Environment Variable Parsing**:
+   - Expands user-specific shortcuts like `~` to the home directory.
+
+## Limitations
+- This shell is intended for educational purposes and basic testing.
+- It lacks advanced features like piping (`|`), input/output redirection (`>`, `<`), and job control (`&`, `fg`, `bg`).
